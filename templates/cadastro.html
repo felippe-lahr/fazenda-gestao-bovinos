@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Animal - Fazenda Santo Antônio da Barra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .nav-btn.primary {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .nav-btn.secondary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .success-message, .error-message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .denominacao-display {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
+        }
+        
+        .denominacao-display h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .denominacao-display p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        input, select, textarea {
+            padding: 12px 15px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .era-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            align-items: end;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+        }
+        
+        .checkbox-group label {
+            margin: 0;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .file-upload {
+            border: 2px dashed #bdc3c7;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .file-upload:hover {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+        
+        .file-upload.dragover {
+            border-color: #27ae60;
+            background: #e8f5e8;
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .file-upload-text {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .file-upload-hint {
+            color: #95a5a6;
+            font-size: 0.8rem;
+        }
+        
+        .preview-container {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .preview-image {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .era-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>Fazenda Santo Antônio da Barra</h1>
+            <p>Sistema de gestão de Bovinos</p>
+        </div>
+        <div class="nav-buttons">
+            <a href="/dashboard" class="nav-btn primary">Dashboard</a>
+            <a href="/lista" class="nav-btn secondary">Lista de Animais</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="form-title">Cadastrar Novo Animal</h2>
+        
+        <div class="success-message" id="successMessage"></div>
+        <div class="error-message" id="errorMessage"></div>
+        
+        <div class="denominacao-display" id="denominacaoDisplay" style="display: none;">
+            <h3>Denominação: <span id="denominacaoTexto">-</span></h3>
+            <p>Esta denominação é calculada automaticamente baseada no gênero, idade e outras características do animal.</p>
+        </div>
+        
+        <form id="animalForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="numero">Número do Animal:</label>
+                    <input type="text" id="numero" name="numero" placeholder="Ex: 001, A123 (opcional)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="proprietario">Proprietário: <span class="required">*</span></label>
+                    <select id="proprietario" name="proprietario" required>
+                        <option value="">Selecione o proprietário</option>
+                        <option value="Luiz Antonio">Luiz Antonio</option>
+                        <option value="Luiz Henrique">Luiz Henrique</option>
+                        <option value="Leda">Leda</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="genero">Gênero: <span class="required">*</span></label>
+                    <select id="genero" name="genero" required>
+                        <option value="">Selecione o gênero</option>
+                        <option value="Macho">Macho</option>
+                        <option value="Fêmea">Fêmea</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Status: <span class="required">*</span></label>
+                    <select id="status" name="status" required>
+                        <option value="">Selecione o status</option>
+                        <option value="Vivo">Vivo</option>
+                        <option value="Morto">Morto</option>
+                        <option value="Vendido">Vendido</option>
+                        <option value="Perdido">Perdido</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Era (Nascimento):</label>
+                    <div class="era-group">
+                        <div>
+                            <label for="era_mes">Mês:</label>
+                            <select id="era_mes" name="era_mes">
+                                <option value="">Selecione</option>
+                                <option value="1">Janeiro</option>
+                                <option value="2">Fevereiro</option>
+                                <option value="3">Março</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Maio</option>
+                                <option value="6">Junho</option>
+                                <option value="7">Julho</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setembro</option>
+                                <option value="10">Outubro</option>
+                                <option value="11">Novembro</option>
+                                <option value="12">Dezembro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="era_ano">Ano:</label>
+                            <select id="era_ano" name="era_ano">
+                                <option value="">Selecione</option>
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                                <option value="2009">2009</option>
+                                <option value="2008">2008</option>
+                                <option value="2007">2007</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="peso">Peso (kg):</label>
+                    <input type="number" id="peso" name="peso" step="0.1" placeholder="Ex: 450.5">
+                </div>
+                
+                <div class="form-group full-width">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="touro" name="touro">
+                        <label for="touro">Este animal é um reprodutor (Touro)</label>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="observacao">Observações:</label>
+                    <textarea id="observacao" name="observacao" placeholder="Informações adicionais sobre o animal..."></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>Foto do Animal:</label>
+                    <div class="file-upload" id="fileUpload">
+                        <input type="file" id="foto" name="foto" accept="image/*">
+                        <div class="file-upload-text">Clique aqui ou arraste uma foto</div>
+                        <div class="file-upload-hint">Formatos aceitos: JPG, PNG (máx. 5MB)</div>
+                    </div>
+                    <div class="preview-container" id="previewContainer">
+                        <img id="previewImage" class="preview-image" alt="Preview">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Cadastrar Animal</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Função para mostrar mensagens
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+        
+        // Upload de arquivo
+        const fileUpload = document.getElementById('fileUpload');
+        const fileInput = document.getElementById('foto');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        
+        fileUpload.addEventListener('click', () => fileInput.click());
+        
+        fileUpload.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUpload.classList.add('dragover');
+        });
+        
+        fileUpload.addEventListener('dragleave', () => {
+            fileUpload.classList.remove('dragover');
+        });
+        
+        fileUpload.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUpload.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                handleFileSelect();
+            }
+        });
+        
+        fileInput.addEventListener('change', handleFileSelect);
+        
+        function handleFileSelect() {
+            const file = fileInput.files[0];
+            if (file) {
+                if (file.size > 5 * 1024 * 1024) {
+                    showError('Arquivo muito grande. Máximo 5MB.');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Calcular denominação em tempo real - LÓGICA CORRIGIDA
+        function updateDenominacao() {
+            const genero = document.getElementById('genero').value;
+            const eraMes = document.getElementById('era_mes').value;
+            const eraAno = document.getElementById('era_ano').value;
+            const numero = document.getElementById('numero').value.trim();
+            const touro = document.getElementById('touro').checked;
+            
+            if (!genero) {
+                document.getElementById('denominacaoDisplay').style.display = 'none';
+                return;
+            }
+            
+            let denominacao = '';
+            
+            // PRIORIDADE 1: Touro (máxima prioridade)
+            if (touro) {
+                denominacao = 'Touro';
+            }
+            // PRIORIDADE 2: Animais com número e SEM idade preenchida
+            else if (numero && (!eraMes || !eraAno)) {
+                if (genero === 'Fêmea') {
+                    denominacao = 'Vaca';
+                } else {
+                    denominacao = 'Boi';
+                }
+            }
+            // PRIORIDADE 3: Animais com número E com idade (número ainda tem prioridade)
+            else if (numero && eraMes && eraAno) {
+                if (genero === 'Fêmea') {
+                    denominacao = 'Vaca';
+                } else {
+                    denominacao = 'Boi';
+                }
+            }
+            // PRIORIDADE 4: Animais SEM número (baseado na idade)
+            else if (!numero && eraMes && eraAno) {
+                const hoje = new Date();
+                const idadeMeses = (hoje.getFullYear() - parseInt(eraAno)) * 12 + (hoje.getMonth() + 1 - parseInt(eraMes));
+                
+                if (genero === 'Fêmea') {
+                    if (idadeMeses < 14) {
+                        denominacao = 'Bezerro Fêmea';
+                    } else if (idadeMeses <= 24) {
+                        denominacao = 'Novilha';
+                    } else {
+                        denominacao = 'Vaca sem número';
+                    }
+                } else {
+                    if (idadeMeses < 14) {
+                        denominacao = 'Bezerro Macho';
+                    } else if (idadeMeses <= 24) {
+                        denominacao = 'Garrote';
+                    } else {
+                        denominacao = 'Boi sem número';
+                    }
+                }
+            }
+            // FALLBACK: Sem número e sem idade
+            else {
+                denominacao = `Bezerro ${genero}`;
+            }
+            
+            document.getElementById('denominacaoTexto').textContent = denominacao;
+            document.getElementById('denominacaoDisplay').style.display = 'block';
+        }
+        
+        // Event listeners para atualizar denominação
+        ['genero', 'era_mes', 'era_ano', 'numero', 'touro'].forEach(id => {
+            document.getElementById(id).addEventListener('change', updateDenominacao);
+            document.getElementById(id).addEventListener('input', updateDenominacao);
+        });
+        
+        // Submissão do formulário
+        document.getElementById('animalForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            
+            // Dados básicos
+            formData.append('numero', document.getElementById('numero').value);
+            formData.append('proprietario', document.getElementById('proprietario').value);
+            formData.append('genero', document.getElementById('genero').value);
+            formData.append('status', document.getElementById('status').value);
+            formData.append('era_mes', document.getElementById('era_mes').value);
+            formData.append('era_ano', document.getElementById('era_ano').value);
+            formData.append('peso', document.getElementById('peso').value);
+            formData.append('touro', document.getElementById('touro').checked);
+            formData.append('observacao', document.getElementById('observacao').value);
+            
+            // Foto
+            const fotoFile = document.getElementById('foto').files[0];
+            if (fotoFile) {
+                formData.append('foto', fotoFile);
+            }
+            
+            try {
+                const response = await fetch('/api/animals', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        numero: document.getElementById('numero').value,
+                        proprietario: document.getElementById('proprietario').value,
+                        genero: document.getElementById('genero').value,
+                        status: document.getElementById('status').value,
+                        era_mes: document.getElementById('era_mes').value || null,
+                        era_ano: document.getElementById('era_ano').value || null,
+                        peso: document.getElementById('peso').value || null,
+                        touro: document.getElementById('touro').checked,
+                        observacao: document.getElementById('observacao').value
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showSuccess(`Animal cadastrado com sucesso! Denominação: ${result.denominacao}`);
+                    document.getElementById('animalForm').reset();
+                    document.getElementById('denominacaoDisplay').style.display = 'none';
+                    document.getElementById('previewContainer').style.display = 'none';
+                    
+                    setTimeout(() => {
+                        window.location.href = '/lista';
+                    }, 2000);
+                } else {
+                    showError(result.message || 'Erro ao cadastrar animal');
+                }
+            } catch (error) {
+                showError('Erro de conexão. Tente novamente.');
+                console.error('Erro:', error);
+            }
+        });
+    </script>
+</body>
+</html>
+

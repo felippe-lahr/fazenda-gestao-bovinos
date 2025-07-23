@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Fazenda Santo Antônio da Barra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fcfcfc;
+            min-height: 100vh;
+            color: #1a1a1a;
+        }
+        
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 30px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            color: #111827;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        
+        .header p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .user-name {
+            color: #374151;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        
+        .logout-btn:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        
+        .dashboard-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+            letter-spacing: -0.025em;
+        }
+        
+        .dashboard-subtitle {
+            color: #6b7280;
+            font-size: 1rem;
+            margin-bottom: 32px;
+        }
+        
+        /* Grid 2x4 para os 8 cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        
+        .stat-card {
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Degradês suaves para cada card */
+        .stat-card.total { 
+            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+        }
+        .stat-card.vacas { 
+            background: linear-gradient(135deg, #06b6d4 0%, #67e8f9 100%);
+        }
+        .stat-card.bois { 
+            background: linear-gradient(135deg, #0ea5e9 0%, #7dd3fc 100%);
+        }
+        .stat-card.touros { 
+            background: linear-gradient(135deg, #10b981 0%, #6ee7b7 100%);
+        }
+        .stat-card.novilhas { 
+            background: linear-gradient(135deg, #8b5cf6 0%, #c4b5fd 100%);
+        }
+        .stat-card.garrotes { 
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+        .stat-card.bezerro-femea { 
+            background: linear-gradient(135deg, #ec4899 0%, #f9a8d4 100%);
+        }
+        .stat-card.bezerro-macho { 
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+        }
+        
+        .card-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .card-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+        
+        .card-subtitle {
+            font-size: 0.75rem;
+            color: #ffffff;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        /* Seção de módulos */
+        .modules-section {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 24px;
+            letter-spacing: -0.025em;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .module-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            background: #ffffff;
+        }
+        
+        .module-card:hover {
+            border-color: var(--module-color, #3b82f6);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .module-card.cadastro { --module-color: #10b981; }
+        .module-card.lista { --module-color: #3b82f6; }
+        .module-card.mortes { --module-color: #ef4444; }
+        .module-card.sanitario { --module-color: #8b5cf6; }
+        
+        .module-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .module-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        
+        .module-description {
+            font-size: 0.875rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        .module-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 16px 20px;
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            .container {
+                padding: 24px 16px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(8, 1fr);
+                gap: 16px;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stat-card {
+                padding: 20px;
+            }
+            
+            .card-number {
+                font-size: 2rem;
+            }
+            
+            .modules-section {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>Fazenda Santo Antônio da Barra</h1>
+            <p>Sistema de gestão de Bovinos</p>
+        </div>
+        <div class="user-info">
+            <span class="user-name" id="userName">Felippe Lahr</span>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="dashboard-title">Dashboard</h2>
+        <p class="dashboard-subtitle">Visão geral do rebanho e estatísticas em tempo real</p>
+        
+        <!-- Grid 2x4 com 8 cards -->
+        <div class="stats-grid">
+            <div class="stat-card total">
+                <div class="card-title">Total de Animais</div>
+                <div class="card-number" id="totalAnimais">0</div>
+            </div>
+            
+            <div class="stat-card vacas">
+                <div class="card-title">Vacas</div>
+                <div class="card-number" id="vacasTotal">0</div>
+                <div class="card-subtitle">(sendo <span id="vacasSemNumero">0</span> sem numeração)</div>
+            </div>
+            
+            <div class="stat-card bois">
+                <div class="card-title">Bois</div>
+                <div class="card-number" id="boisTotal">0</div>
+                <div class="card-subtitle">(sendo <span id="boisSemNumero">0</span> sem numeração)</div>
+            </div>
+            
+            <div class="stat-card touros">
+                <div class="card-title">Touros</div>
+                <div class="card-number" id="touros">0</div>
+            </div>
+            
+            <div class="stat-card novilhas">
+                <div class="card-title">Novilhas</div>
+                <div class="card-number" id="novilhas">0</div>
+            </div>
+            
+            <div class="stat-card garrotes">
+                <div class="card-title">Garrotes</div>
+                <div class="card-number" id="garrotes">0</div>
+            </div>
+            
+            <div class="stat-card bezerro-femea">
+                <div class="card-title">Bezerro Fêmea</div>
+                <div class="card-number" id="bezerroFemea">0</div>
+            </div>
+            
+            <div class="stat-card bezerro-macho">
+                <div class="card-title">Bezerro Macho</div>
+                <div class="card-number" id="bezerroMacho">0</div>
+            </div>
+        </div>
+
+        <!-- Módulos principais e futuros -->
+        <div class="modules-section">
+            <h3 class="section-title">Módulos do Sistema</h3>
+            <div class="modules-grid">
+                <a href="/cadastro" class="module-card cadastro">
+                    <div class="module-icon">➕</div>
+                    <div class="module-title">Cadastrar Animal</div>
+                    <div class="module-description">Adicionar novo animal ao rebanho com denominação automática</div>
+                </a>
+                
+                <a href="/lista" class="module-card lista">
+                    <div class="module-icon">📋</div>
+                    <div class="module-title">Lista de Animais</div>
+                    <div class="module-description">Visualizar, filtrar e gerenciar animais cadastrados</div>
+                </a>
+                
+                <div class="module-card mortes">
+                    <div class="module-icon">💀</div>
+                    <div class="module-title">Mortes</div>
+                    <div class="module-description">Controle de óbitos e causas de morte do rebanho</div>
+                    <div class="module-badge">Em desenvolvimento</div>
+                </div>
+                
+                <div class="module-card sanitario">
+                    <div class="module-icon">💉</div>
+                    <div class="module-title">Sanitário</div>
+                    <div class="module-description">Controle sanitário, vacinas e tratamentos veterinários</div>
+                    <div class="module-badge">Em desenvolvimento</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Verificar autenticação
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            if (!token || !user) {
+                window.location.href = '/login';
+                return false;
+            }
+            
+            // Atualizar nome do usuário
+            try {
+                const userData = JSON.parse(user);
+                document.getElementById('userName').textContent = userData.name;
+            } catch (e) {
+                console.error('Erro ao parsear dados do usuário:', e);
+            }
+            
+            return true;
+        }
+        
+        // Logout
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login';
+        }
+        
+        // Carregar estatísticas - FORÇAR ATUALIZAÇÃO
+        async function loadStats() {
+            try {
+                // Adicionar timestamp para evitar cache
+                const timestamp = new Date().getTime();
+                const response = await fetch(`/api/dashboard/stats?t=${timestamp}`, {
+                    cache: 'no-cache',
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
+                });
+                const stats = await response.json();
+                
+                console.log('Estatísticas recebidas:', stats);
+                
+                // Atualizar cards com os nomes corretos dos campos da API
+                document.getElementById('totalAnimais').textContent = stats.total || 0;
+                document.getElementById('vacasTotal').textContent = stats.vacas_total || 0;
+                document.getElementById('vacasSemNumero').textContent = stats.vacas_sem_numero || 0;
+                document.getElementById('boisTotal').textContent = stats.bois_total || 0;
+                document.getElementById('boisSemNumero').textContent = stats.bois_sem_numero || 0;
+                document.getElementById('touros').textContent = stats.touro || 0;
+                document.getElementById('novilhas').textContent = stats.novilha || 0;
+                document.getElementById('garrotes').textContent = stats.garrote || 0;
+                document.getElementById('bezerroFemea').textContent = stats.bezerro_femea || 0;
+                document.getElementById('bezerroMacho').textContent = stats.bezerro_macho || 0;
+                
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas:', error);
+            }
+        }
+        
+        // Inicializar página
+        if (checkAuth()) {
+            loadStats();
+            
+            // Atualizar estatísticas a cada 10 segundos para detectar mudanças mais rapidamente
+            setInterval(loadStats, 10000);
+        }
+        
+        // Recarregar estatísticas quando a página ganha foco
+        window.addEventListener('focus', loadStats);
+        
+        // Recarregar estatísticas quando volta de outra página
+        window.addEventListener('pageshow', loadStats);
+    </script>
+</body>
+</html>
+
