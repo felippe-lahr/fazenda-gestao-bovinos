@@ -11,494 +11,556 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', sans-serif;
             background: #fcfcfc;
-            min-height: 100vh;
-            color: #1a1a1a;
+            color: #2d3748;
+            line-height: 1.6;
         }
-        
+
         .header {
-            background: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
-            padding: 20px 30px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
-        
-        .header h1 {
-            color: #111827;
-            font-size: 1.75rem;
+
+        .logo h1 {
+            font-size: 1.8rem;
             font-weight: 700;
-            letter-spacing: -0.025em;
         }
-        
-        .header p {
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-top: 2px;
+
+        .logo p {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
-        
-        .nav-links {
+
+        .nav-buttons {
             display: flex;
             gap: 1rem;
         }
-        
-        .nav-links a {
-            color: #3b82f6;
-            text-decoration: none;
+
+        .nav-btn {
             padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-        
-        .nav-links a:hover {
-            background: #3b82f6;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            transform: translateY(-1px);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
-        
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 32px 24px;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
-        
+
         .page-title {
-            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title h2 {
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #111827;
-            margin-bottom: 8px;
-            letter-spacing: -0.025em;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
         }
-        
-        .page-subtitle {
-            color: #6b7280;
-            font-size: 1rem;
-            margin-bottom: 32px;
+
+        .page-title p {
+            font-size: 1.1rem;
+            color: #718096;
         }
-        
+
         .filters-section {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
+            background: white;
             border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
         }
-        
+
         .filters-title {
-            font-size: 1.125rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #111827;
-            margin-bottom: 20px;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        
-        .filters-grid {
+
+        .filters-title::before {
+            content: "🔍";
+            font-size: 1.2rem;
+        }
+
+        /* Layout dos filtros em 2 linhas */
+        .filters-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
-        
+
+        .filters-row:last-of-type {
+            margin-bottom: 0;
+        }
+
         .filter-group {
             display: flex;
             flex-direction: column;
         }
-        
+
         .filter-group label {
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 6px;
-            font-size: 0.875rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
-        
+
         .filter-group input,
         .filter-group select {
-            padding: 10px 12px;
-            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
             border-radius: 8px;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-            background: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
         }
-        
+
         .filter-group input:focus,
         .filter-group select:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-        
-        .era-filter {            display: grid;            grid-template-columns: 1fr 1fr;            gap: 10px;        }
-            background: #3b82f6;
+
+        /* Filtro Era especial com 2 campos lado a lado */
+        .era-filter-group {
+            grid-column: 1 / -1;
+        }
+
+        .era-filter {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .era-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .era-field label {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .era-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .era-inputs select {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .era-inputs select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Botões de ação */
+        .filter-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
         }
-        
+
         .btn-primary:hover {
-            background: #2563eb;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
-        
+
         .btn-secondary {
-            background: #f3f4f6;
-            color: #374151;
-            border: 1px solid #d1d5db;
+            background: #f7fafc;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
         }
-        
+
         .btn-secondary:hover {
-            background: #e5e7eb;
+            background: #edf2f7;
+            border-color: #cbd5e0;
+            transform: translateY(-2px);
         }
-        
-        .table-section {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
+
+        /* Seção de resultados */
+        .results-section {
+            background: white;
             border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
-        
-        .table-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid #e5e7eb;
+
+        .results-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 1.5rem;
         }
-        
-        .table-title {
-            font-size: 1.125rem;
+
+        .results-title {
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #111827;
+            color: #2d3748;
         }
-        
+
         .results-count {
-            color: #6b7280;
-            font-size: 0.875rem;
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
         }
-        
+
+        /* Tabela */
         .table-container {
             overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
+            background: white;
         }
-        
+
         th {
-            background: #f9fafb;
-            padding: 12px 16px;
+            background: #f7fafc;
+            padding: 1rem;
             text-align: left;
             font-weight: 600;
-            color: #374151;
-            font-size: 0.875rem;
-            border-bottom: 1px solid #e5e7eb;
+            color: #4a5568;
+            border-bottom: 2px solid #e2e8f0;
         }
-        
+
         td {
-            padding: 16px;
-            border-bottom: 1px solid #f3f4f6;
-            font-size: 0.875rem;
-            color: #374151;
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
         }
-        
+
         tr:hover {
-            background: #f9fafb;
+            background: #f7fafc;
         }
-        
+
+        /* Tags de denominação */
         .tag {
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
             text-align: center;
-            display: inline-block;
-            min-width: 80px;
+            white-space: nowrap;
         }
-        
-        /* Cores corrigidas para denominações */
-        .tag-bezerro-femea { background: #fce4ec; color: #ad1457; }
-        .tag-bezerro-macho { background: #e3f2fd; color: #1565c0; }
-        .tag-novilha { background: #f3e5f5; color: #7b1fa2; }
-        .tag-garrote { background: #fff3e0; color: #ef6c00; }
-        .tag-vaca { background: #dcfce7; color: #166534; }
-        .tag-boi { background: #dbeafe; color: #1e40af; }
-        /* Cores corrigidas: Vaca sem número usa cor de Vaca, Boi sem número usa cor de Boi */
-        .tag-vaca-sem-numero { background: #dcfce7; color: #166534; }
-        .tag-boi-sem-numero { background: #dbeafe; color: #1e40af; }
-        .tag-touro { background: #ffebee; color: #c62828; }
-        
-        /* Status tags */
-        .tag-vivo { background: #dcfce7; color: #166534; }
-        .tag-morto { background: #fee2e2; color: #dc2626; }
-        .tag-vendido { background: #dbeafe; color: #2563eb; }
-        .tag-perdido { background: #fef3c7; color: #d97706; }
-        
+
+        .tag-vaca, .tag-vaca-sem-numero { background: #c6f6d5; color: #22543d; }
+        .tag-boi, .tag-boi-sem-numero { background: #bee3f8; color: #2a4365; }
+        .tag-touro { background: #fed7d7; color: #742a2a; }
+        .tag-novilha { background: #e9d8fd; color: #44337a; }
+        .tag-garrote { background: #fbd38d; color: #744210; }
+        .tag-bezerro-femea { background: #fbb6ce; color: #702459; }
+        .tag-bezerro-macho { background: #fbd38d; color: #744210; }
+
+        /* Tags de status */
+        .status-vivo { background: #c6f6d5; color: #22543d; }
+        .status-morto { background: #fed7d7; color: #742a2a; }
+        .status-vendido { background: #bee3f8; color: #2a4365; }
+        .status-perdido { background: #fbd38d; color: #744210; }
+
+        /* Botões de ação na tabela */
         .action-buttons {
             display: flex;
-            gap: 8px;
+            gap: 0.5rem;
         }
-        
-        .btn-action {
-            padding: 6px 12px;
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
             border: none;
             border-radius: 6px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            transition: all 0.3s ease;
         }
-        
+
         .btn-edit {
-            background: #3b82f6;
+            background: #4299e1;
             color: white;
         }
-        
+
         .btn-edit:hover {
-            background: #2563eb;
+            background: #3182ce;
             transform: translateY(-1px);
         }
-        
+
         .btn-delete {
-            background: #ef4444;
+            background: #f56565;
             color: white;
         }
-        
+
         .btn-delete:hover {
-            background: #dc2626;
+            background: #e53e3e;
             transform: translateY(-1px);
         }
-        
+
+        /* Paginação */
         .pagination {
-            padding: 20px 24px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
-            border-top: 1px solid #e5e7eb;
+            gap: 0.5rem;
+            margin-top: 2rem;
         }
-        
+
         .pagination button {
-            padding: 8px 12px;
-            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
             background: white;
-            color: #374151;
+            color: #4a5568;
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.875rem;
+            transition: all 0.3s ease;
         }
-        
+
         .pagination button:hover:not(:disabled) {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
+            background: #edf2f7;
+            border-color: #cbd5e0;
         }
-        
+
+        .pagination button.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
         .pagination button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
-        
-        .pagination .current-page {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
-        }
-        
-        /* Modal styles */
+
+        /* Modais */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
             backdrop-filter: blur(4px);
         }
-        
+
         .modal-content {
-            background-color: #ffffff;
-            margin: 5% auto;
-            padding: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
             border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
             width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
+            max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .modal-header {
-            padding: 24px;
-            border-bottom: 1px solid #e5e7eb;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
         }
-        
+
         .modal-title {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #111827;
+            color: #2d3748;
         }
-        
-        .close {
+
+        .close-btn {
             background: none;
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #6b7280;
-            padding: 4px;
-            border-radius: 4px;
-            transition: all 0.2s ease;
+            color: #a0aec0;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
-        
-        .close:hover {
-            background: #f3f4f6;
-            color: #374151;
+
+        .close-btn:hover {
+            background: #edf2f7;
+            color: #4a5568;
         }
-        
-        .modal-body {
-            padding: 24px;
-        }
-        
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-group label {
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 6px;
-            font-size: 0.875rem;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 10px 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        
-        .form-group input:disabled,
-        .form-group select:disabled {
-            background-color: #f9fafb;
-            color: #6b7280;
-            cursor: not-allowed;
-        }
-        
-        .modal-footer {
-            padding: 24px;
-            border-top: 1px solid #e5e7eb;
-            display: flex;
-            gap: 12px;
-            justify-content: flex-end;
-        }
-        
+
         /* Responsividade */
         @media (max-width: 768px) {
-            .header {
-                padding: 16px 20px;
+            .header-content {
                 flex-direction: column;
-                gap: 16px;
+                gap: 1rem;
                 text-align: center;
             }
-            
-            .container {
-                padding: 24px 16px;
-            }
-            
-            .filters-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .filter-actions {
-                justify-content: stretch;
-            }
-            
-            .filter-actions .btn {
-                flex: 1;
+
+            .nav-buttons {
+                flex-wrap: wrap;
                 justify-content: center;
             }
-            
-            .table-header {
-                flex-direction: column;
-                gap: 12px;
-                align-items: flex-start;
+
+            .page-title h2 {
+                font-size: 2rem;
             }
-            
+
+            .filters-row {
+                grid-template-columns: 1fr;
+            }
+
+            .era-filter {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .results-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
             .action-buttons {
                 flex-direction: column;
             }
-            
-            .modal-content {
-                margin: 10% auto;
-                width: 95%;
+
+            .pagination {
+                flex-wrap: wrap;
             }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal-footer {
-                flex-direction: column;
-            }
+        }
+
+        /* Estados vazios */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #718096;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div>
-            <h1>Fazenda Santo Antônio da Barra</h1>
-            <p>Sistema de gestão de Bovinos</p>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <h1>Fazenda Santo Antônio da Barra</h1>
+                <p>Sistema de gestão de Bovinos</p>
+            </div>
+            <nav class="nav-buttons">
+                <a href="/dashboard" class="nav-btn">📊 Dashboard</a>
+                <a href="/cadastro" class="nav-btn">➕ Cadastrar Animal</a>
+            </nav>
         </div>
-        <div class="nav-links">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/cadastro">Cadastrar Animal</a>
-        </div>
-    </div>
+    </header>
 
+    <!-- Container Principal -->
     <div class="container">
-        <h2 class="page-title">Lista de Animais</h2>
-        <p class="page-subtitle">Gerencie e visualize todos os animais do rebanho</p>
-        
+        <!-- Título da Página -->
+        <div class="page-title">
+            <h2>Lista de Animais</h2>
+            <p>Gerencie e visualize todos os animais do rebanho</p>
+        </div>
+
+        <!-- Seção de Filtros -->
         <div class="filters-section">
             <h3 class="filters-title">Filtros de Busca</h3>
-            <div class="filters-grid">
+            
+            <!-- Primeira linha de filtros -->
+            <div class="filters-row">
                 <div class="filter-group">
                     <label for="filtroNumero">Número:</label>
                     <input type="text" id="filtroNumero" placeholder="Ex: 001, A123">
@@ -524,6 +586,20 @@
                 </div>
                 
                 <div class="filter-group">
+                    <label for="filtroStatus">Status:</label>
+                    <select id="filtroStatus">
+                        <option value="">Todos</option>
+                        <option value="Vivo">Vivo</option>
+                        <option value="Morto">Morto</option>
+                        <option value="Vendido">Vendido</option>
+                        <option value="Perdido">Perdido</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Segunda linha - Filtro Era -->
+            <div class="filters-row">
+                <div class="filter-group">
                     <label for="filtroDenominacao">Denominação:</label>
                     <select id="filtroDenominacao">
                         <option value="">Todas</option>
@@ -538,42 +614,103 @@
                         <option value="Touro">Touro</option>
                     </select>
                 </div>
-                
-                <div class="filter-group">
-                    <label for="filtroStatus">Status:</label>
-                    <select id="filtroStatus">
-                        <option value="">Todos</option>
-                        <option value="Vivo">Vivo</option>
-                        <option value="Morto">Morto</option>
-                        <option value="Vendido">Vendido</option>
-                        <option value="Perdido">Perdido</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group era-range-filter">
+
+                <div class="era-filter-group">
                     <label>Era:</label>
-                    <div class="era-range">
-                        <div class="era-from">
-                <div class="filter-group">                    <label>Era (Nascimento):</label>                    <div class="era-filter">                        <select id="filtroEraMes">                            <option value="">Mês</option>                            <option value="1">Janeiro</option>                            <option value="2">Fevereiro</option>                            <option value="3">Março</option>                            <option value="4">Abril</option>                            <option value="5">Maio</option>                            <option value="6">Junho</option>                            <option value="7">Julho</option>                            <option value="8">Agosto</option>                            <option value="9">Setembro</option>                            <option value="10">Outubro</option>                            <option value="11">Novembro</option>                            <option value="12">Dezembro</option>                        </select>                        <select id="filtroEraAno">                            <option value="">Ano</option>                            <option value="2025">2025</option>                            <option value="2024">2024</option>                            <option value="2023">2023</option>                            <option value="2022">2022</option>                            <option value="2021">2021</option>                            <option value="2020">2020</option>                            <option value="2019">2019</option>                            <option value="2018">2018</option>                            <option value="2017">2017</option>                            <option value="2016">2016</option>                            <option value="2015">2015</option>                        </select>                    </div>                </div>
-                        </select>
+                    <div class="era-filter">
+                        <div class="era-field">
+                            <label for="filtroEraMesDe">Era de:</label>
+                            <div class="era-inputs">
+                                <select id="filtroEraMesDe">
+                                    <option value="">Mês</option>
+                                    <option value="1">Janeiro</option>
+                                    <option value="2">Fevereiro</option>
+                                    <option value="3">Março</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Maio</option>
+                                    <option value="6">Junho</option>
+                                    <option value="7">Julho</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Setembro</option>
+                                    <option value="10">Outubro</option>
+                                    <option value="11">Novembro</option>
+                                    <option value="12">Dezembro</option>
+                                </select>
+                                <select id="filtroEraAnoDe">
+                                    <option value="">Ano</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="era-field">
+                            <label for="filtroEraMesAte">Até:</label>
+                            <div class="era-inputs">
+                                <select id="filtroEraMesAte">
+                                    <option value="">Mês</option>
+                                    <option value="1">Janeiro</option>
+                                    <option value="2">Fevereiro</option>
+                                    <option value="3">Março</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Maio</option>
+                                    <option value="6">Junho</option>
+                                    <option value="7">Julho</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Setembro</option>
+                                    <option value="10">Outubro</option>
+                                    <option value="11">Novembro</option>
+                                    <option value="12">Dezembro</option>
+                                </select>
+                                <select id="filtroEraAnoAte">
+                                    <option value="">Ano</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Botões de Ação -->
             <div class="filter-actions">
-                <button class="btn btn-secondary" onclick="limparFiltros()">Limpar Filtros</button>
-                <button class="btn btn-primary" onclick="aplicarFiltros()">🔍 Aplicar Filtros</button>
+                <button type="button" class="btn btn-secondary" onclick="limparFiltros()">
+                    🗑️ Limpar Filtros
+                </button>
+                <button type="button" class="btn btn-primary" onclick="aplicarFiltros()">
+                    🔍 Aplicar Filtros
+                </button>
             </div>
         </div>
 
-        <div class="table-section">
-            <div class="table-header">
-                <h3 class="table-title">Animais Cadastrados</h3>
-                <span class="results-count" id="resultsCount">0 animais encontrados</span>
+        <!-- Seção de Resultados -->
+        <div class="results-section">
+            <div class="results-header">
+                <h3 class="results-title">Animais Cadastrados</h3>
+                <div class="results-count" id="resultsCount">0 animais encontrados</div>
             </div>
-            
+
             <div class="table-container">
-                <table id="animalsTable">
+                <table>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -588,14 +725,20 @@
                         </tr>
                     </thead>
                     <tbody id="animalsTableBody">
-                        <!-- Dados serão carregados via JavaScript -->
+                        <!-- Dados serão inseridos via JavaScript -->
                     </tbody>
                 </table>
             </div>
-            
-            <div class="pagination" id="pagination">
-                <!-- Paginação será gerada via JavaScript -->
+
+            <!-- Estado vazio -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon">🐄</div>
+                <h3>Nenhum animal encontrado</h3>
+                <p>Tente ajustar os filtros ou cadastre um novo animal</p>
             </div>
+
+            <!-- Paginação -->
+            <div class="pagination" id="pagination"></div>
         </div>
     </div>
 
@@ -604,129 +747,28 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Editar Animal</h3>
-                <button class="close" onclick="closeEditModal()">&times;</button>
+                <button class="close-btn" onclick="closeEditModal()">&times;</button>
             </div>
-            <div class="modal-body">
-                <form id="editForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="editId">ID:</label>
-                            <input type="text" id="editId" disabled>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="editNumero">Número:</label>
-                            <input type="text" id="editNumero">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="editProprietario">Proprietário:</label>
-                            <select id="editProprietario" disabled>
-                                <option value="Luiz Antonio">Luiz Antonio</option>
-                                <option value="Luiz Henrique">Luiz Henrique</option>
-                                <option value="Leda">Leda</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="editGenero">Gênero:</label>
-                            <select id="editGenero">
-                                <option value="Macho">Macho</option>
-                                <option value="Fêmea">Fêmea</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="editEraMes">Mês de Nascimento:</label>
-                            <select id="editEraMes">
-                                <option value="">Selecione</option>
-                                <option value="1">Janeiro</option>
-                                <option value="2">Fevereiro</option>
-                                <option value="3">Março</option>
-                                <option value="4">Abril</option>
-                                <option value="5">Maio</option>
-                                <option value="6">Junho</option>
-                                <option value="7">Julho</option>
-                                <option value="8">Agosto</option>
-                                <option value="9">Setembro</option>
-                                <option value="10">Outubro</option>
-                                <option value="11">Novembro</option>
-                                <option value="12">Dezembro</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="editEraAno">Ano de Nascimento:</label>
-                            <select id="editEraAno">
-                                <option value="">Selecione</option>
-                                <option value="2025">2025</option>
-                                <option value="2024">2024</option>
-                                <option value="2023">2023</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                                <option value="2018">2018</option>
-                                <option value="2017">2017</option>
-                                <option value="2016">2016</option>
-                                <option value="2015">2015</option>
-                                <option value="2014">2014</option>
-                                <option value="2013">2013</option>
-                                <option value="2012">2012</option>
-                                <option value="2011">2011</option>
-                                <option value="2010">2010</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="editPeso">Peso (kg):</label>
-                            <input type="number" id="editPeso" step="0.1">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="editStatus">Status:</label>
-                            <select id="editStatus">
-                                <option value="Vivo">Vivo</option>
-                                <option value="Morto">Morto</option>
-                                <option value="Vendido">Vendido</option>
-                                <option value="Perdido">Perdido</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group" style="grid-column: 1 / -1;">
-                            <label>
-                                <input type="checkbox" id="editTouro"> Este animal é um reprodutor (Touro)
-                            </label>
-                        </div>
-                        
-                        <div class="form-group" style="grid-column: 1 / -1;">
-                            <label for="editObservacao">Observações:</label>
-                            <textarea id="editObservacao" rows="3"></textarea>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeEditModal()">Cancelar</button>
-                <button class="btn btn-primary" onclick="saveAnimal()">Salvar Alterações</button>
+            <div id="editForm">
+                <!-- Formulário será inserido via JavaScript -->
             </div>
         </div>
     </div>
 
     <!-- Modal de Confirmação de Exclusão -->
     <div id="deleteModal" class="modal">
-        <div class="modal-content" style="max-width: 400px;">
+        <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Confirmar Exclusão</h3>
-                <button class="close" onclick="closeDeleteModal()">&times;</button>
+                <button class="close-btn" onclick="closeDeleteModal()">&times;</button>
             </div>
-            <div class="modal-body">
-                <p>Tem certeza que deseja excluir este animal?</p>
-                <p><strong>Esta ação não pode ser desfeita.</strong></p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
-                <button class="btn btn-delete" onclick="confirmDelete()">Excluir</button>
+            <div style="text-align: center; padding: 1rem 0;">
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Tem certeza que deseja excluir este animal?</p>
+                <p style="margin-bottom: 2rem; color: #e53e3e; font-weight: 600;">Esta ação não pode ser desfeita.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
+                    <button class="btn btn-delete" onclick="confirmDelete()">Excluir</button>
+                </div>
             </div>
         </div>
     </div>
@@ -746,8 +788,8 @@
                 const data = await response.json();
                 
                 allAnimals = data;
-                                filteredAnimals = [...allAnimals];
-                                displayAnimals();
+                filteredAnimals = [...allAnimals];
+                displayAnimals();
                 
             } catch (error) {
                 console.error('Erro ao carregar animais:', error);
@@ -757,101 +799,114 @@
         // Exibir animais na tabela
         function displayAnimals() {
             const tbody = document.getElementById('animalsTableBody');
+            const emptyState = document.getElementById('emptyState');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            // Atualizar contador
+            resultsCount.textContent = `${filteredAnimals.length} animais encontrados`;
+            
+            if (filteredAnimals.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.style.display = 'block';
+                document.querySelector('.table-container').style.display = 'none';
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            document.querySelector('.table-container').style.display = 'block';
+            
+            // Paginação
             const itemsPerPage = 10;
+            totalPages = Math.ceil(filteredAnimals.length / itemsPerPage);
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const pageAnimals = filteredAnimals.slice(startIndex, endIndex);
+            const currentAnimals = filteredAnimals.slice(startIndex, endIndex);
             
-            tbody.innerHTML = '';
-            
-            pageAnimals.forEach(animal => {
-                const row = document.createElement('tr');
-                
-                // Formatação da era
-                let eraText = '-';
-                if (animal.era_mes && animal.era_ano) {
-                    const meses = ['', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-                    eraText = `${meses[animal.era_mes]}/${animal.era_ano}`;
-                }
-                
-                // Classes CSS para tags
+            // Gerar HTML da tabela
+            tbody.innerHTML = currentAnimals.map(animal => {
                 const denominacaoClass = animal.denominacao.toLowerCase()
                     .replace(/\s+/g, '-')
                     .replace(/ê/g, 'e')
-                    .replace(/ã/g, 'a');
+                    .replace(/ã/g, 'a')
+                    .replace(/ú/g, 'u');
                 
                 const statusClass = animal.status.toLowerCase();
                 
-                row.innerHTML = `
-                    <td>${animal.id}</td>
-                    <td>${animal.numero || '-'}</td>
-                    <td>${animal.proprietario}</td>
-                    <td>${animal.genero}</td>
-                    <td><span class="tag tag-${denominacaoClass}">${animal.denominacao}</span></td>
-                    <td>${eraText}</td>
-                    <td>${animal.peso ? animal.peso + ' kg' : '-'}</td>
-                    <td><span class="tag tag-${statusClass}">${animal.status}</span></td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn-action btn-edit" onclick="editAnimal(${animal.id})">Ver/Editar</button>
-                            <button class="btn-action btn-delete" onclick="deleteAnimal(${animal.id})">Excluir</button>
-                        </div>
-                    </td>
-                `;
+                const era = animal.era_mes && animal.era_ano 
+                    ? `${getMonthName(animal.era_mes)}/${animal.era_ano}`
+                    : '-';
                 
-                tbody.appendChild(row);
-            });
-            
-            // Atualizar contador
-            document.getElementById('resultsCount').textContent = `${filteredAnimals.length} animais encontrados`;
+                const peso = animal.peso ? `${animal.peso} kg` : '-';
+                const numero = animal.numero || '-';
+                
+                return `
+                    <tr>
+                        <td>${animal.id}</td>
+                        <td>${numero}</td>
+                        <td>${animal.proprietario}</td>
+                        <td>${animal.genero}</td>
+                        <td><span class="tag tag-${denominacaoClass}">${animal.denominacao}</span></td>
+                        <td>${era}</td>
+                        <td>${peso}</td>
+                        <td><span class="tag status-${statusClass}">${animal.status}</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-sm btn-edit" onclick="editAnimal(${animal.id})">Ver/Editar</button>
+                                <button class="btn-sm btn-delete" onclick="deleteAnimal(${animal.id})">Excluir</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
             
             // Atualizar paginação
             updatePagination();
         }
         
+        // Função auxiliar para obter nome do mês
+        function getMonthName(month) {
+            const months = [
+                '', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+                'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+            ];
+            return months[parseInt(month)] || '';
+        }
+        
         // Atualizar paginação
         function updatePagination() {
-            const itemsPerPage = 10;
-            totalPages = Math.ceil(filteredAnimals.length / itemsPerPage);
             const pagination = document.getElementById('pagination');
             
-            pagination.innerHTML = '';
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+            
+            let html = '';
             
             // Botão anterior
-            const prevBtn = document.createElement('button');
-            prevBtn.textContent = '← Anterior';
-            prevBtn.disabled = currentPage === 1;
-            prevBtn.onclick = () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    displayAnimals();
-                }
-            };
-            pagination.appendChild(prevBtn);
+            const prevDisabled = currentPage === 1 ? 'disabled' : '';
+            html += `<button ${prevDisabled} onclick="changePage(${currentPage - 1})">‹ Anterior</button>`;
             
             // Números das páginas
             for (let i = 1; i <= totalPages; i++) {
-                const pageBtn = document.createElement('button');
-                pageBtn.textContent = i;
-                pageBtn.className = i === currentPage ? 'current-page' : '';
-                pageBtn.onclick = () => {
-                    currentPage = i;
-                    displayAnimals();
-                };
-                pagination.appendChild(pageBtn);
+                const active = i === currentPage ? 'active' : '';
+                html += `<button class="${active}" onclick="changePage(${i})">${i}</button>`;
             }
             
             // Botão próximo
-            const nextBtn = document.createElement('button');
-            nextBtn.textContent = 'Próximo →';
-            nextBtn.disabled = currentPage === totalPages;
-            nextBtn.onclick = () => {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    displayAnimals();
-                }
-            };
-            pagination.appendChild(nextBtn);
+            const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+            html += `<button ${nextDisabled} onclick="changePage(${currentPage + 1})">Próximo ›</button>`;
+            
+            pagination.innerHTML = html;
+        }
+        
+        // Mudar página
+        function changePage(page) {
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                displayAnimals();
+            }
         }
         
         // Aplicar filtros
@@ -861,7 +916,59 @@
             const genero = document.getElementById('filtroGenero').value;
             const denominacao = document.getElementById('filtroDenominacao').value;
             const status = document.getElementById('filtroStatus').value;
-            const eraMes = document.getElementById("filtroEraMes").value;            const eraAno = document.getElementById("filtroEraAno").value;                        filteredAnimals = allAnimals.filter(animal => {                return (!numero || (animal.numero && animal.numero.toLowerCase().includes(numero))) &&                       (!proprietario || animal.proprietario === proprietario) &&                       (!genero || animal.genero === genero) &&                       (!denominacao || animal.denominacao === denominacao) &&                       (!status || animal.status === status) &&                       (!eraMes || animal.era_mes == eraMes) &&                       (!eraAno || animal.era_ano == eraAno);            });
+            const eraMesDe = document.getElementById('filtroEraMesDe').value;
+            const eraAnoDe = document.getElementById('filtroEraAnoDe').value;
+            const eraMesAte = document.getElementById('filtroEraMesAte').value;
+            const eraAnoAte = document.getElementById('filtroEraAnoAte').value;
+            
+            filteredAnimals = allAnimals.filter(animal => {
+                // Filtros básicos
+                const passaNumero = !numero || (animal.numero && animal.numero.toLowerCase().includes(numero));
+                const passaProprietario = !proprietario || animal.proprietario === proprietario;
+                const passaGenero = !genero || animal.genero === genero;
+                const passaDenominacao = !denominacao || animal.denominacao === denominacao;
+                const passaStatus = !status || animal.status === status;
+                
+                // Filtro de Era (período)
+                let passaFiltroEra = true;
+                
+                if (eraMesDe || eraAnoDe || eraMesAte || eraAnoAte) {
+                    if (!animal.era_mes || !animal.era_ano) {
+                        passaFiltroEra = false;
+                    } else {
+                        const animalDate = new Date(animal.era_ano, animal.era_mes - 1, 1);
+                        
+                        // Data de início do filtro
+                        if (eraMesDe && eraAnoDe) {
+                            const dataInicio = new Date(parseInt(eraAnoDe), parseInt(eraMesDe) - 1, 1);
+                            if (animalDate < dataInicio) {
+                                passaFiltroEra = false;
+                            }
+                        } else if (eraAnoDe) {
+                            const dataInicio = new Date(parseInt(eraAnoDe), 0, 1);
+                            if (animalDate < dataInicio) {
+                                passaFiltroEra = false;
+                            }
+                        }
+                        
+                        // Data de fim do filtro
+                        if (eraMesAte && eraAnoAte) {
+                            const dataFim = new Date(parseInt(eraAnoAte), parseInt(eraMesAte), 0); // Último dia do mês
+                            if (animalDate > dataFim) {
+                                passaFiltroEra = false;
+                            }
+                        } else if (eraAnoAte) {
+                            const dataFim = new Date(parseInt(eraAnoAte), 11, 31); // 31 de dezembro
+                            if (animalDate > dataFim) {
+                                passaFiltroEra = false;
+                            }
+                        }
+                    }
+                }
+                
+                return passaNumero && passaProprietario && passaGenero && 
+                       passaDenominacao && passaStatus && passaFiltroEra;
+            });
             
             currentPage = 1;
             displayAnimals();
@@ -870,3 +977,84 @@
         // Limpar filtros
         function limparFiltros() {
             document.getElementById('filtroNumero').value = '';
+            document.getElementById('filtroProprietario').value = '';
+            document.getElementById('filtroGenero').value = '';
+            document.getElementById('filtroDenominacao').value = '';
+            document.getElementById('filtroStatus').value = '';
+            document.getElementById('filtroEraMesDe').value = '';
+            document.getElementById('filtroEraAnoDe').value = '';
+            document.getElementById('filtroEraMesAte').value = '';
+            document.getElementById('filtroEraAnoAte').value = '';
+            
+            filteredAnimals = [...allAnimals];
+            currentPage = 1;
+            displayAnimals();
+        }
+        
+        // Editar animal
+        function editAnimal(id) {
+            currentEditId = id;
+            // Implementar modal de edição
+            console.log('Editar animal:', id);
+        }
+        
+        // Excluir animal
+        function deleteAnimal(id) {
+            currentDeleteId = id;
+            document.getElementById('deleteModal').style.display = 'block';
+        }
+        
+        // Confirmar exclusão
+        async function confirmDelete() {
+            if (!currentDeleteId) return;
+            
+            try {
+                const response = await fetch(`/api/animals/${currentDeleteId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    await loadAnimals(); // Recarregar lista
+                    closeDeleteModal();
+                } else {
+                    alert('Erro ao excluir animal');
+                }
+            } catch (error) {
+                console.error('Erro ao excluir animal:', error);
+                alert('Erro ao excluir animal');
+            }
+        }
+        
+        // Fechar modal de edição
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            currentEditId = null;
+        }
+        
+        // Fechar modal de exclusão
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+            currentDeleteId = null;
+        }
+        
+        // Fechar modais ao clicar fora
+        window.onclick = function(event) {
+            const editModal = document.getElementById('editModal');
+            const deleteModal = document.getElementById('deleteModal');
+            
+            if (event.target === editModal) {
+                closeEditModal();
+            }
+            if (event.target === deleteModal) {
+                closeDeleteModal();
+            }
+        }
+        
+        // Carregar animais quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAnimals();
+        });
+    </script>
+</body>
+</html>
+
